@@ -1,0 +1,44 @@
+{
+  "name": "proton-quark-amqp",
+  "version": "1.0.0",
+  "description": "Quark to load proton-amqp-exchange(s) and proton-amqp-queue(s) and use them with proton microframework",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "test": "./node_modules/mocha-co/bin/mocha -R spec ./test/*.js"
+  },
+  "author": "Antonio Saad",
+  "license": "ISC",
+  "devDependencies": {
+    "mocha-co": "1.17.1-co.1",
+    "should": ">= 0.0.1",
+    "co-supertest": "^0.0.10",
+    "supertest": "^1.2.0",
+    "dotenv": "2.0.0"
+  },
+  "dependencies": {
+    "proton-quark": "^1.0.0",
+    "amqplib": "^0.4.2"
+  },
+  "directories": {
+    "test": "test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/acsaadk/proton-quark-amqp"
+  },
+  "keywords": [
+    "RabbitMQ",
+    "Bunny",
+    "AMQP",
+    "Exchange",
+    "Queue",
+    "Proton",
+    "Microframework"
+    "Quark"
+  ],
+  "bugs": {
+    "url": "https://github.com/acsaadk/proton-quark-amqp/issues"
+  },
+  "homepage": "https://github.com/acsaadk/proton-quark-amqp/blob/master/README.md"
+}
