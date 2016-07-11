@@ -5,6 +5,7 @@ const fs = require('fs')
 const path = require('path')
 const _ = require('lodash')
 const amqp = require('amqplib')
+const co = require('co')
 
 module.exports = class AMQPQuark extends Quark {
 
@@ -18,8 +19,8 @@ module.exports = class AMQPQuark extends Quark {
   }
 
   initialize() {
-    co.wrap(this._initializeQueues)()
-    co.wrap(this._initializeExchanges)()
+    return Promise.all([co.wrap(this._initializeQueues.bind(this))(),
+    co.wrap(this._initializeExchanges.bind(this))()]).then((values) => values)
   }
 
   * _initializeQueues() {
