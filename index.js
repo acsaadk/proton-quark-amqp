@@ -91,15 +91,19 @@ module.exports = class AMQPQuark extends Quark {
     this.proton.app.amqp.queues[name] = queue
   }
 
-  * _bindingsFromExchange(exchange) {
-    const bindings = exchange.bindings
-    for(let b in bindings) {
-      if(b.to === 'queue') {
-        yield exchange.channel.bindQueue(bindings[b].source, exchange.name, bindings[b].routingKey, bindings[b].args)
-      }else {
-        yield exchange.channel.bindExchange(exchange.name, bindings[b].source, bindings[b].routingKey, bindings[b].args)
+  _bindingsFromExchange(exchange) {
+    const { bindings } = exchange
+    return Promise.all(bindings.map(b => {
+      if(b.source) {
+        return exchange.channel.bindExchange(exchange.name, b.source, b.routingKey, b.args)
+      } else if(b.destination) {
+        if(b.to === 'queue') return exchange.channel.bindQueue(b.destination, exchange.name, b.routingKey, b.args)
+        else if(b.to === 'exchange') return exchange.channel.bindExchange(b.destination, exchange.name, b.routingKey, b.args)
+        else throw new Error('In order to define a destination binding, param `to` must be defined')
+      } else {
+        throw new Error('Either source or exchange must be defined')
       }
-    }
+    }))
   }
 
   * _bindingsFromQueue(queue) {
