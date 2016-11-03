@@ -1,6 +1,6 @@
 {
   "name": "proton-quark-amqp",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "Quark to load proton-amqp-exchange(s) and proton-amqp-queue(s) and use them with proton microframework",
   "main": "index.js",
   "scripts": {
