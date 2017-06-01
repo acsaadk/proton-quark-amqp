@@ -16,6 +16,7 @@ module.exports = class AMQPQuark extends Quark {
 
   validate() {
     // Nothing to do ....
+    return Promise.resolve()
   }
 
   initialize() {
@@ -45,6 +46,7 @@ module.exports = class AMQPQuark extends Quark {
 
   configure() {
     // Nothing to do ....
+    return Promise.resolve()
   }
 
   get _exchanges() {
