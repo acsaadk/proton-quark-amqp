@@ -50,12 +50,12 @@ module.exports = class AMQPQuark extends Quark {
   }
 
   get _exchanges() {
-    const exchangesPath = path.join(this.proton.app.path, '/amqp/exchanges')
+    const exchangesPath = path.join(this.proton.paths.api, '/amqp/exchanges')
     return fs.existsSync(exchangesPath) ? require('require-all')(exchangesPath) : {}
   }
 
   get _queues() {
-    const queuesPath = path.join(this.proton.app.path, '/amqp/queues')
+    const queuesPath = path.join(this.proton.paths.api, '/amqp/queues')
     return fs.existsSync(queuesPath) ? require('require-all')(queuesPath) : {}
   }
 
